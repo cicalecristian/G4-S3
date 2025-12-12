@@ -207,14 +207,20 @@ function deleteProp(oggetto, stringa) {
   Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
 */
 
+// esercizio in fondo alla pagina
+
 /* ESERCIZIO 18
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
 
+// esercizio in fondo alla pagina
+
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
+
+// esercizio in fondo alla pagina
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
@@ -279,6 +285,12 @@ const restart = () => {
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
+
+const addClassTr = () => {
+  document.querySelectorAll("tr").forEach((tr) => tr.classList.add("test"));
+};
+
+addClassTr();
 
 // [EXTRA] JS Avanzato
 
@@ -418,9 +430,9 @@ const movies = [
   Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
 */
 
-const newestMovie = (array) => {
+const newestMovie = (newMov) => {
   let result = { Year: 1900 };
-  array.forEach((movie) => {
+  newMov.forEach((movie) => {
     let currentYear = parseInt(movie.Year);
     if (currentYear > result.Year) {
       result = movie;
@@ -446,8 +458,8 @@ const onlyTheYears = () => movies.map((movie) => movie.Year);
   Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
 */
 
-const onlyInLastMillennium = (array) => {
-  return array.filter((movie) => {
+const onlyInLastMillennium = (mil) => {
+  return mil.filter((movie) => {
     return parseInt(movie.Year) < 2000;
   });
 };
@@ -456,6 +468,33 @@ const onlyInLastMillennium = (array) => {
   Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
 */
 
-const sumAllTheYears = (array) => {
-  return array.reduce((acc, curr) => acc + parseInt(curr.Year), 0);
+const sumAllTheYears = (sum) => {
+  return sum.reduce((acc, curr) => acc + parseInt(curr.Year), 0);
+};
+
+/* ESERCIZIO 17
+  Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
+*/
+
+const searchByTitle = (stringa) => movies.filter((movie) => movie.Title.includes(stringa));
+
+/* ESERCIZIO 18
+  Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
+  "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
+*/
+
+const searchAndDivide = (stringa) => {
+  const match = movies.filter((movie) => movie.Title.includes(stringa));
+  const unmatch = movies.filter((movie) => !movie.Title.includes(stringa));
+
+  return { match, unmatch };
+};
+
+/* ESERCIZIO 19
+  Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
+*/
+
+const removeIndex = (num) => {
+  movies.splice(num, 1);
+  return movies;
 };
